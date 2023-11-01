@@ -3,46 +3,65 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class CheckTrueButtons : MonoBehaviour
+namespace UI.Pagination
 {
-    [SerializeField] private GameObject[] _buttons;
-    [SerializeField] private int _countAnswers;
-
-    [SerializeField] private bool[] _answers;
-
-    [SerializeField] private GameObject _pageRect;
-
-    public void CheckAnswers()
+    public class CheckTrueButtons : MonoBehaviour
     {
-        bool isAnswerCorrect = true;
+        [SerializeField] private GameObject[] _buttons;
+        [SerializeField] private int _countAnswers;
 
-        // Проверяем выбранные ответы
-        for (int i = 0; i < _buttons.Length; i++)
+        [SerializeField] private bool[] _answers;
+
+        [SerializeField] private GameObject _pageRect;
+        [SerializeField] private bool isAnswerCorrect;
+        [SerializeField] private int _numTruePage;
+        [SerializeField] private int _numFalsePage;
+
+        public void CheckAnswers()
         {
-            bool isSelected = _buttons[i].GetComponent<Image>().sprite.name == "clickedBtn";
+            isAnswerCorrect = true;
 
-            // Проверяем, является ли выбранный ответ правильным
-            if (isSelected && !_answers[i])
+            // Проверяем выбранные ответы
+            for (int i = 0; i < _buttons.Length; i++)
             {
-                isAnswerCorrect = false;
-                break;
+                bool isSelected = _buttons[i].GetComponent<Image>().sprite.name == "clickedBtn";
+
+                // Проверяем, является ли выбранный ответ правильным
+                if (isSelected && !_answers[i])
+                {
+                    isAnswerCorrect = false;
+                    break;
+                }
+                else if (!isSelected && _answers[i])
+                {
+                    isAnswerCorrect = false;
+                    break;
+                }
             }
-            else if (!isSelected && _answers[i])
+
+            // Выводим результат
+            if (isAnswerCorrect)
             {
-                isAnswerCorrect = false;
-                break;
+                Debug.Log("Правильные ответы выбраны!");
+            }
+            else
+            {
+                Debug.Log("Неправильные ответы выбраны.");
             }
         }
 
-        // Выводим результат
-        if (isAnswerCorrect)
+        public void SetPage()
         {
-            Debug.Log("Правильные ответы выбраны!");
-        }
-        else
-        {
-            Debug.Log("Неправильные ответы выбраны.");
+            if (isAnswerCorrect)
+            {
+                _pageRect.GetComponent<PagedRect>().SetCurrentPage(_numTruePage);
+                print("true");
+            }
+            else
+            {
+                _pageRect.GetComponent<PagedRect>().SetCurrentPage(_numFalsePage);
+                print("false");
+            }
         }
     }
-
 }
