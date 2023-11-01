@@ -8,24 +8,41 @@ public class CheckTrueButtons : MonoBehaviour
     [SerializeField] private GameObject[] _buttons;
     [SerializeField] private int _countAnswers;
 
+    [SerializeField] private bool[] _answers;
+
     public void CheckAnswers()
     {
-        if (_buttons[0].GetComponent<Image>().sprite.name == "clickedBtn")
+        bool isAnswerCorrect = true;
+
+        // Проверяем выбранные ответы
+        for (int i = 0; i < _buttons.Length; i++)
         {
-            if (_buttons[1].GetComponent<Image>().sprite.name == "clickedBtn")
+            // Получаем компонент Image для доступа к спрайту кнопки
+            Image buttonImage = _buttons[i].GetComponent<Image>();
+
+            // Проверяем, является ли имя спрайта "clickedBtn"
+            if (buttonImage.sprite.name == "clickedBtn")
             {
-                if (_buttons[2].GetComponent<Image>().sprite.name == "clickedBtn")
-                {
-                    if (_buttons[3].GetComponent<Image>().sprite.name == "clickedBtn")
-                    {
-                        if (_buttons[4].GetComponent<Image>().sprite.name == "clickedBtn")
-                        {
-                            print("ok");
-                        }
-                    }
-                }
+                // Ответ выбран
+                // Ваши действия, когда ответ правильный
+            }
+            else
+            {
+                // Ответ не выбран
+                // Ваши действия, когда ответ неправильный
+                isAnswerCorrect = false;
+                break;
             }
         }
-           
+
+        // Выводим результат
+        if (isAnswerCorrect)
+        {
+            Debug.Log("Правильные ответы выбраны!");
+        }
+        else
+        {
+            Debug.Log("Неправильные ответы выбраны.");
+        }
     }
 }
