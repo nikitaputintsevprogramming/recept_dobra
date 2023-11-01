@@ -10,6 +10,8 @@ public class CheckTrueButtons : MonoBehaviour
 
     [SerializeField] private bool[] _answers;
 
+    [SerializeField] private GameObject _pageRect;
+
     public void CheckAnswers()
     {
         bool isAnswerCorrect = true;
@@ -17,19 +19,16 @@ public class CheckTrueButtons : MonoBehaviour
         // Проверяем выбранные ответы
         for (int i = 0; i < _buttons.Length; i++)
         {
-            // Получаем компонент Image для доступа к спрайту кнопки
-            Image buttonImage = _buttons[i].GetComponent<Image>();
+            bool isSelected = _buttons[i].GetComponent<Image>().sprite.name == "clickedBtn";
 
-            // Проверяем, является ли имя спрайта "clickedBtn"
-            if (buttonImage.sprite.name == "clickedBtn")
+            // Проверяем, является ли выбранный ответ правильным
+            if (isSelected && !_answers[i])
             {
-                // Ответ выбран
-                // Ваши действия, когда ответ правильный
+                isAnswerCorrect = false;
+                break;
             }
-            else
+            else if (!isSelected && _answers[i])
             {
-                // Ответ не выбран
-                // Ваши действия, когда ответ неправильный
                 isAnswerCorrect = false;
                 break;
             }
@@ -45,4 +44,5 @@ public class CheckTrueButtons : MonoBehaviour
             Debug.Log("Неправильные ответы выбраны.");
         }
     }
+
 }
