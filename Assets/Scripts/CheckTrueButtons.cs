@@ -10,6 +10,8 @@ public class CheckTrueButtons : MonoBehaviour
 
     [SerializeField] private bool[] _answers;
 
+    [SerializeField] private GameObject _pageRect;
+
     public void CheckAnswers()
     {
         bool isAnswerCorrect = true;
