@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class TextUI : MonoBehaviour
 {
+    [SerializeField] private Sprite _clickedButton;
+
     public void Clicked()
     {
         GetComponent<Text>().color = Color.white;
-        transform.parent.gameObject.GetComponent<Image>().color = new Color32(236, 128, 58, 255);
+        transform.parent.gameObject.GetComponent<Image>().sprite = _clickedButton;
     }
 }
