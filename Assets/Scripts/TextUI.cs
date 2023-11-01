@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TextUI : MonoBehaviour
 {
     [SerializeField] private Sprite _clickedButton;
+    [SerializeField] private Sprite _unClickedButton;
 
     public void Clicked()
     {

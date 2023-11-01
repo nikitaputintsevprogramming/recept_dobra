@@ -40,4 +40,9 @@ public class TimerReset : MonoBehaviour
         _OnShitTheTimeIsReset += _the—lockIsTicking;
         _the—lockIsTicking = 0f;
     }
+
+    public void Reboot()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
