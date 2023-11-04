@@ -55,12 +55,10 @@ namespace UI.Pagination
             if (isAnswerCorrect)
             {
                 _pageRect.GetComponent<PagedRect>().SetCurrentPage(_numTruePage);
-                print("true");
             }
             else
             {
                 _pageRect.GetComponent<PagedRect>().SetCurrentPage(_numFalsePage);
-                print("false");
             }
         }
     }
