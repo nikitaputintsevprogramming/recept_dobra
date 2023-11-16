@@ -10,7 +10,25 @@ public class TextUI : MonoBehaviour
 
     public void Clicked()
     {
+        if(transform.parent.gameObject.GetComponent<Image>().sprite == _clickedButton)
+        {
+            ClickOff();
+        }
+        else
+        {
+            ClickOn();
+        }
+    }
+
+    private void ClickOn()
+    {
         GetComponent<Text>().color = Color.white;
         transform.parent.gameObject.GetComponent<Image>().sprite = _clickedButton;
+    }
+
+    private void ClickOff()
+    {
+        GetComponent<Text>().color = new Color32(236, 128, 58, 255);
+        transform.parent.gameObject.GetComponent<Image>().sprite = _unClickedButton;
     }
 }
