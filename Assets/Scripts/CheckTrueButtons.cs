@@ -17,6 +17,14 @@ namespace UI.Pagination
         [SerializeField] private int _numTruePage;
         [SerializeField] private int _numFalsePage;
 
+        [SerializeField] private Button _next;
+
+
+        private void Start()
+        {
+            _next.interactable = false;
+        }
+
         public void CheckAnswers()
         {
             isAnswerCorrect = true;
@@ -32,6 +40,8 @@ namespace UI.Pagination
                     isAnswerCorrect = false;
                     break;
                 }
+                // ѕровер€ем, €вл€етс€ ли выбранный ответ правильным
+   
                 else if (!isSelected && _answers[i])
                 {
                     isAnswerCorrect = false;
@@ -48,6 +58,11 @@ namespace UI.Pagination
             {
                 Debug.Log("Ќеправильные ответы выбраны.");
             }
+        }
+
+        public void AnswerIsReady()
+        {
+            _next.interactable = true;
         }
 
         public void SetPage()
