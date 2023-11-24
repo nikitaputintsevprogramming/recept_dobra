@@ -60,11 +60,6 @@ namespace UI.Pagination
             }
         }
 
-        public void AnswerIsReady()
-        {
-            _next.interactable = true;
-        }
-
         public void SetPage()
         {
             if (isAnswerCorrect)

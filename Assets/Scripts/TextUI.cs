@@ -8,6 +8,8 @@ public class TextUI : MonoBehaviour
     [SerializeField] private Sprite _clickedButton;
     [SerializeField] private Sprite _unClickedButton;
 
+    [SerializeField] private Button _next;
+
     public void Clicked()
     {
         if(transform.parent.gameObject.GetComponent<Image>().sprite == _clickedButton)
@@ -17,6 +19,7 @@ public class TextUI : MonoBehaviour
         else
         {
             ClickOn();
+           
         }
     }
 
@@ -24,6 +27,8 @@ public class TextUI : MonoBehaviour
     {
         GetComponent<Text>().color = Color.white;
         transform.parent.gameObject.GetComponent<Image>().sprite = _clickedButton;
+
+        _next.interactable = true;
     }
 
     private void ClickOff()
