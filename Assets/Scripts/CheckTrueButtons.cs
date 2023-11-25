@@ -47,6 +47,11 @@ namespace UI.Pagination
                     isAnswerCorrect = false;
                     break;
                 }
+
+                else
+                {
+                    SetUncorrect(_buttons[i].gameObject);
+                }
             }
 
             // Выводим результат
@@ -70,6 +75,15 @@ namespace UI.Pagination
             {
                 _pageRect.GetComponent<PagedRect>().SetCurrentPage(_numFalsePage);
             }
+        }
+
+        [ContextMenu("Do red")]
+        private void SetUncorrect(GameObject btn)
+        {
+            btn.GetComponentInChildren<Text>().color = Color.white;
+            btn.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
+
+            _next.interactable = true;
         }
     }
 }
