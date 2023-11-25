@@ -9,7 +9,6 @@ namespace UI.Pagination
     {
         [SerializeField] private GameObject[] _buttons;
         [SerializeField] private int _countAnswers;
-
         [SerializeField] private bool[] _answers;
 
         [SerializeField] private GameObject _pageRect;
@@ -18,7 +17,6 @@ namespace UI.Pagination
         [SerializeField] private int _numFalsePage;
 
         [SerializeField] private Button _next;
-
         [SerializeField] private GameObject _uncorrectPanel;
 
 
@@ -44,11 +42,10 @@ namespace UI.Pagination
                     //break;
                 }
                 // ѕровер€ем, €вл€етс€ ли выбранный ответ правильным
-   
                 else if (!isSelected && _answers[i])
                 {
                     isAnswerCorrect = false;
-                    break;
+                    //break;
                 }
 
                 //else
