@@ -19,6 +19,8 @@ namespace UI.Pagination
 
         [SerializeField] private Button _next;
 
+        [SerializeField] private GameObject _uncorrectPanel;
+
 
         private void Start()
         {
@@ -38,7 +40,8 @@ namespace UI.Pagination
                 if (isSelected && !_answers[i])
                 {
                     isAnswerCorrect = false;
-                    break;
+                    SetUncorrect(_buttons[i].gameObject);
+                    //break;
                 }
                 // Проверяем, является ли выбранный ответ правильным
    
@@ -48,10 +51,10 @@ namespace UI.Pagination
                     break;
                 }
 
-                else
-                {
-                    SetUncorrect(_buttons[i].gameObject);
-                }
+                //else
+                //{
+                    //SetUncorrect(_buttons[i].gameObject);
+                //}
             }
 
             // Выводим результат
@@ -73,7 +76,8 @@ namespace UI.Pagination
             }
             else
             {
-                _pageRect.GetComponent<PagedRect>().SetCurrentPage(_numFalsePage);
+                _uncorrectPanel.SetActive(true);
+                //_pageRect.GetComponent<PagedRect>().SetCurrentPage(_numFalsePage);
             }
         }
 

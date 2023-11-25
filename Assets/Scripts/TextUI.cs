@@ -12,14 +12,13 @@ public class TextUI : MonoBehaviour
 
     public void Clicked()
     {
-        if(transform.parent.gameObject.GetComponent<Image>().sprite == _clickedButton)
+        if(transform.gameObject.GetComponentInChildren<Text>().color == Color.white)
         {
             ClickOff();
         }
         else
         {
-            ClickOn();
-           
+            ClickOn(); 
         }
     }
 
@@ -35,5 +34,6 @@ public class TextUI : MonoBehaviour
     {
         GetComponent<Text>().color = new Color32(236, 128, 58, 255);
         transform.parent.gameObject.GetComponent<Image>().sprite = _unClickedButton;
+        transform.parent.gameObject.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
     }
 }
