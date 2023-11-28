@@ -20,9 +20,17 @@ namespace UI.Pagination
         [SerializeField] private GameObject _uncorrectPanel;
 
 
+        [SerializeField] private Sprite _unClickedButton;
+
+        private IEnumerator coroutine;
+
+
+
         private void Start()
         {
             _next.interactable = false;
+
+            coroutine = WaitUncorrected(2f);
         }
 
         public void CheckAnswers()
@@ -32,6 +40,7 @@ namespace UI.Pagination
             // ѕровер€ем выбранные ответы
             for (int i = 0; i < _buttons.Length; i++)
             {
+
                 bool isSelected = _buttons[i].GetComponent<Image>().sprite.name == "clickedBtn";
 
                 // ѕровер€ем, €вл€етс€ ли выбранный ответ правильным
@@ -85,6 +94,36 @@ namespace UI.Pagination
             btn.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
 
             _next.interactable = true;
+        }
+
+        [ContextMenu("Do not red")]
+        public void SetUncorrected()
+        {
+            coroutine = WaitUncorrected(2f);
+            StartCoroutine(coroutine);
+        }
+
+        public IEnumerator WaitUncorrected(float waitTime)
+        {
+            //while (true)
+            //{
+                yield return new WaitForSeconds(waitTime);
+                print("WaitAndPrint " + Time.time);
+
+                for (int i = 0; i < _buttons.Length; i++)
+                {
+                    //print();
+                    if (_buttons[i].GetComponent<Image>().color.r == 1 && _buttons[i].GetComponent<Image>().color.g == 0 && _buttons[i].GetComponent<Image>().color.b == 0)
+                    {
+                        //_buttons[i].GetComponent<Image>().color = new Color32()
+
+                        _buttons[i].GetComponentInChildren<Text>().color = new Color32(236, 128, 58, 255);
+                        _buttons[i].GetComponent<Image>().sprite = _unClickedButton;
+                        _buttons[i].GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                    }
+                }
+            //}
+
         }
     }
 }
